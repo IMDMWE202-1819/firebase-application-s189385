@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "68742394279",
+    "firebase_url": "https://naturetracker-7e1bb.firebaseio.com",
+    "project_id": "naturetracker-7e1bb",
+    "storage_bucket": "naturetracker-7e1bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68742394279:android:75defa42d182c381",
+        "android_client_info": {
+          "package_name": "com.example.alex.naturetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68742394279-uojnrocondflr9iqq44ejonhrc3l5chh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alex.naturetracker",
+            "certificate_hash": "5dd0df1e642f65be09de5630d52d924b2f2a82e0"
+          }
+        },
+        {
+          "client_id": "68742394279-li1ar584ditgrqpo9dbuguco8rcsf0ri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM9UteZg78XHkXT3eV4AIVVpopN6Ua7E8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68742394279-li1ar584ditgrqpo9dbuguco8rcsf0ri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
