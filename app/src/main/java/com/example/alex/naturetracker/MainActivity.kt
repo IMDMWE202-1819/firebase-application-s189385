@@ -50,6 +50,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        var forgottenpassword = findViewById<TextView>(R.id.forgottenpassword)
+
+        forgottenpassword.setOnClickListener()
+        {
+            val intent = Intent(this, com.example.alex.naturetracker.forgottenpassword::class.java)
+            startActivity(intent)
+        }
+
 
         //Logic for logging in
         loginButton.setOnClickListener {
