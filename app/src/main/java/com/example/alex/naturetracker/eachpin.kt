@@ -1,6 +1,17 @@
 package com.example.alex.naturetracker
 
-public class pin {
+import com.google.firebase.firestore.GeoPoint
 
-    
-}
+public class pin ()  {
+
+    var description : String = ""
+    var location : GeoPoint? = null
+
+
+    }
+
+
+
+
+
+

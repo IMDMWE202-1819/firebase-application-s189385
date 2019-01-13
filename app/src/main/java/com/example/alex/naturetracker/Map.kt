@@ -10,12 +10,9 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
-
-
-class Map : AppCompatActivity(), OnMapReadyCallback {
+class Map: AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
@@ -38,22 +35,39 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
+
+
+
+
+        val sydney = LatLng(-34.0, 151.0)
+
         mMap = googleMap
 
+
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+
+        mMap.addMarker(MarkerOptions().position(sydney).title("hi"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("naturetracker-7e1bb")
+        var db = FirebaseFirestore.getInstance()
+        var mylist : ArrayList<String> = ArrayList()
 
-        var listofpins = myRef.child("pins")
+        db.collection("mycollection")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
 
-        Toast.makeText(baseContext, listofpins.toString(),
-            Toast.LENGTH_SHORT).show()
+                    mylist.add(document.toString())
+                }
+            }
+            .addOnFailureListener {
+            }
+
+      
 
 
-        print(myRef.toString())
     }
-}
+
+
+    }
+

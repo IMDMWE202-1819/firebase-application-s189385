@@ -10,13 +10,20 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_map.*
 
 class MainActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
         //you know the deal
         var loginButton = findViewById<Button>(R.id.loginbtn)
@@ -33,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         //Changing the ui based on user logged in bool
         fun updateUI()
         {
-            val intent = Intent(this, Map::class.java)
+            val intent = Intent(this, option::class.java)
             startActivity(intent)
         }
 
