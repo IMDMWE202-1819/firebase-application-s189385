@@ -2,6 +2,7 @@ package com.example.alex.naturetracker
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
 
 class Map: AppCompatActivity(), OnMapReadyCallback {
 
@@ -39,29 +41,57 @@ class Map: AppCompatActivity(), OnMapReadyCallback {
 
 
 
-        val sydney = LatLng(-34.0, 151.0)
+
 
         mMap = googleMap
 
 
         // Add a marker in Sydney and move the camera
 
-        mMap.addMarker(MarkerOptions().position(sydney).title("hi"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+
+
 
         var db = FirebaseFirestore.getInstance()
-        var mylist : ArrayList<String> = ArrayList()
+        var mylist : ArrayList<pin> = ArrayList()
 
+
+        //gets database documents under my collection
         db.collection("mycollection")
             .get()
             .addOnSuccessListener { documents ->
+                //for each item it creates the marker and adds description
                 for (document in documents) {
 
-                    mylist.add(document.toString())
+                    var mystring = document["location"].toString()
+
+
+                    var list = mystring.split(",")
+
+                    val re = Regex("[Pg}Geopint{ laud=]")
+
+                    var lat =  re.replace(list[0].toString(), "")
+                    var lon = re.replace(list[1].toString(), "")
+
+                    var currentgeo : GeoPoint = GeoPoint(lat.toDouble() , lon.toDouble())
+
+                    var currentdes = document["description"].toString()
+
+                    var newpin = pin()
+
+                    newpin.location = currentgeo
+                    newpin.description = currentdes
+
+
+                    val currentmarker = LatLng(currentgeo.latitude, currentgeo.longitude)
+
+                    mMap.addMarker(MarkerOptions().position(currentmarker).title(currentdes))
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(currentmarker))
                 }
             }
             .addOnFailureListener {
             }
+
 
       
 

@@ -46,13 +46,15 @@ class log : AppCompatActivity() {
             {
                 fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-
+                //asks user permission
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                 {
                     val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
                     ActivityCompat.requestPermissions(this, permissions,0)
 
-                } else
+                }
+                //if user has given permission
+                else
                 {
 
                     fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? -> var geo = GeoPoint(location!!.latitude, location.longitude)
@@ -71,7 +73,8 @@ class log : AppCompatActivity() {
 
                         db.collection("mycollection").add(data)
 
-
+                        Toast.makeText(baseContext, "item logged",
+                            Toast.LENGTH_SHORT).show()
 
                     }
             }
